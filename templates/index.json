@@ -12,6 +12,8 @@
     "hero": {
       "type": "yespress-hero",
       "settings": {
+        "use_default_video": true,
+        "video_loop": true,
         "show_logo_mark": true,
         "brand_bold": "YESPRESS",
         "brand_regular": "EEN",

@@ -1,6 +1,23 @@
 <section class="yespress-hero{% if section.settings.full_height %} yespress-hero--full{% endif %}">
   <div class="yespress-hero__media" aria-hidden="true">
-    {%- if section.settings.image != blank -%}
+    {%- if section.settings.video != blank -%}
+      {{
+        section.settings.video
+        | video_tag: class: 'yespress-hero__video', autoplay: true, loop: section.settings.video_loop, muted: true, controls: false, playsinline: true
+      }}
+    {%- elsif section.settings.use_default_video -%}
+      <video
+        class="yespress-hero__video"
+        autoplay
+        {% if section.settings.video_loop %}loop{% endif %}
+        muted
+        playsinline
+        preload="metadata"
+        {% if section.settings.image != blank %}poster="{{ section.settings.image | image_url: width: 1600 }}"{% endif %}
+      >
+        <source src="{{ 'yespress-hero.mp4' | asset_url }}" type="video/mp4">
+      </video>
+    {%- elsif section.settings.image != blank -%}
       {{
         section.settings.image
         | image_url: width: 1880
@@ -67,7 +84,8 @@
     pointer-events: none;
   }
 
-  .yespress-hero__image {
+  .yespress-hero__image,
+  .yespress-hero__video {
     width: min(940px, 66vw);
     height: 118%;
     object-fit: contain;
@@ -185,7 +203,8 @@
       bottom: 32%;
     }
 
-    .yespress-hero__image {
+    .yespress-hero__image,
+    .yespress-hero__video {
       width: min(560px, 100vw);
       height: 112%;
     }
@@ -216,10 +235,29 @@
   "class": "yespress-hero-wrapper",
   "settings": [
     {
+      "type": "video",
+      "id": "video",
+      "label": "Hero video",
+      "info": "Optional override. When empty, the bundled Yespress hero animation is used."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_default_video",
+      "label": "Use bundled hero video",
+      "info": "Plays the Yespress hero animation shipped with the theme when no video is selected above.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop video",
+      "default": true
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Product image",
-      "info": "Export the hero product render from Figma (node 415:1755) and upload it here."
+      "label": "Fallback / poster image",
+      "info": "Shown while the video loads, or instead of it when videos are disabled."
     },
     {
       "type": "checkbox",
