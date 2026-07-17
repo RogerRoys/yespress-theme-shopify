@@ -87,4 +87,84 @@
     background: rgba(0, 174, 66, 0.6);
     color: #fff;
   }
+
+  /* Subtle film grain for depth */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(0, 174, 66, 0.7);
+    outline-offset: 2px;
+  }
+
+  /* Store badge pills (used by CTA App + Footer) */
+  .yespress-badge {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border-radius: 980px;
+    padding: 12px 20px;
+    font-family: var(--yespress-font);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+
+  .yespress-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+  }
+
+  .yespress-badge:hover {
+    transform: translateY(-2px);
+  }
+
+  .yespress-badge:hover::after {
+    left: 130%;
+  }
+
+  .yespress-badge--light {
+    background: #fff;
+    color: #0b0b0c;
+  }
+
+  .yespress-badge--light:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.12);
+  }
+
+  .yespress-badge--green {
+    background: var(--yespress-green);
+    color: #fff;
+  }
+
+  .yespress-badge--green:hover {
+    box-shadow: 0 10px 30px rgba(0, 174, 66, 0.4);
+  }
+
+  .yespress-badge__icon {
+    display: inline-flex;
+  }
+
+  .yespress-badge__icon svg {
+    width: 17px;
+    height: 17px;
+  }
 </style>

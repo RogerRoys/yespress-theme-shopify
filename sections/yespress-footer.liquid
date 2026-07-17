@@ -162,14 +162,16 @@
   }
 
   .yespress-footer__menu a {
+    display: inline-block;
     font-size: 14px;
     color: rgba(245, 245, 247, 0.65);
     text-decoration: none;
-    transition: color 0.15s ease;
+    transition: color 0.2s ease, transform 0.25s ease;
   }
 
   .yespress-footer__menu a:hover {
     color: var(--yespress-text);
+    transform: translateX(3px);
   }
 
   .yespress-footer__newsletter-text {
@@ -186,6 +188,11 @@
     border-radius: 100px;
     padding: 4px 4px 4px 18px;
     max-width: 360px;
+    transition: box-shadow 0.25s ease;
+  }
+
+  .yespress-footer__input-wrap:focus-within {
+    box-shadow: 0 0 0 3px rgba(0, 174, 66, 0.4), 0 8px 30px rgba(0, 174, 66, 0.15);
   }
 
   .yespress-footer__input {

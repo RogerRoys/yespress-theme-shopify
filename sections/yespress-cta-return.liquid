@@ -1,19 +1,20 @@
 <section class="yespress-cta-return">
-  <div class="yespress-cta-return__content" data-ys-stagger>
+  <div class="yespress-cta-return__content">
     {%- if section.settings.heading != blank -%}
-      <h2 class="yespress-cta-return__heading">{{ section.settings.heading }}</h2>
+      <h2 class="yespress-cta-return__heading" data-ys-words>{{ section.settings.heading }}</h2>
     {%- endif -%}
     {%- if section.settings.text != blank -%}
-      <p class="yespress-cta-return__text">{{ section.settings.text }}</p>
+      <p class="yespress-cta-return__text" data-ys-reveal="up" data-ys-delay="0.15">{{ section.settings.text }}</p>
     {%- endif -%}
     {%- if section.settings.button_label != blank -%}
-      <a href="{{ section.settings.button_link | default: '#' }}" class="yespress-cta-return__button">
+      <a href="{{ section.settings.button_link | default: '#' }}" class="yespress-cta-return__button" data-ys-reveal="up" data-ys-delay="0.28">
         {{- section.settings.button_label -}}
       </a>
     {%- endif -%}
   </div>
 
   <div class="yespress-cta-return__orbit" aria-hidden="true" data-ys-reveal="up" data-ys-delay="0.2">
+    <span class="yespress-cta-return__glow"></span>
     <span class="yespress-cta-return__arc yespress-cta-return__arc--1"></span>
     <span class="yespress-cta-return__arc yespress-cta-return__arc--2"></span>
     <span class="yespress-cta-return__arc yespress-cta-return__arc--3"></span>
@@ -82,12 +83,13 @@
     border-radius: 980px;
     padding: 12px 24px;
     text-decoration: none;
-    transition: background 0.15s ease, transform 0.15s ease;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .yespress-cta-return__button:hover {
     background: var(--yespress-green-hover);
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 30px rgba(0, 174, 66, 0.45);
   }
 
   .yespress-cta-return__orbit {
@@ -117,7 +119,7 @@
     aspect-ratio: 1;
     background: #fff;
     border-radius: 22%;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -157,6 +159,22 @@
     .yespress-cta-return__arc--1 { width: 120vw; }
     .yespress-cta-return__arc--2 { width: 170vw; }
     .yespress-cta-return__arc--3 { width: 220vw; }
+  }
+  .yespress-cta-return__orbit {
+    -webkit-mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+  }
+
+  .yespress-cta-return__glow {
+    position: absolute;
+    left: 50%;
+    bottom: -45%;
+    width: 74vw;
+    aspect-ratio: 2.1;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(0, 174, 66, 0.22), transparent 72%);
+    filter: blur(34px);
+    pointer-events: none;
   }
 {% endstyle %}
 

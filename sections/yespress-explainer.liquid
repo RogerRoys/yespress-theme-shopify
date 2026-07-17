@@ -91,6 +91,8 @@
     align-items: center;
     min-height: clamp(480px, 66vh, 650px);
     background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
     border-radius: clamp(20px, 2vw, 28px);
     overflow: hidden;
     padding: clamp(24px, 4.4vw, 66px);
@@ -142,11 +144,12 @@
   }
 
   .yespress-explainer__item {
-    background: rgba(29, 29, 31, 0.92);
+    background: rgba(29, 29, 31, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 26px;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    transition: border-radius 0.3s ease;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    transition: background 0.3s ease, border-color 0.3s ease, border-radius 0.3s ease;
   }
 
   .yespress-explainer__item.is-open {
@@ -180,6 +183,14 @@
 
   .yespress-explainer__item.is-open .yespress-explainer__icon svg {
     transform: rotate(45deg);
+  }
+
+  .yespress-explainer__item:not(.is-open):hover {
+    background: rgba(44, 44, 46, 0.8);
+  }
+
+  .yespress-explainer__item.is-open .yespress-explainer__icon {
+    color: var(--yespress-green);
   }
 
   .yespress-explainer__title {

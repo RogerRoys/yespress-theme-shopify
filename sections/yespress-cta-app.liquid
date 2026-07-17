@@ -1,13 +1,13 @@
 <section class="yespress-cta-app">
   <div class="yespress-cta-app__panel" data-ys-reveal="scale">
-    <div class="yespress-cta-app__content" data-ys-stagger>
+    <div class="yespress-cta-app__content">
       {%- if section.settings.heading != blank -%}
-        <h2 class="yespress-cta-app__heading">{{ section.settings.heading }}</h2>
+        <h2 class="yespress-cta-app__heading" data-ys-words>{{ section.settings.heading }}</h2>
       {%- endif -%}
       {%- if section.settings.text != blank -%}
-        <p class="yespress-cta-app__text">{{ section.settings.text }}</p>
+        <p class="yespress-cta-app__text" data-ys-reveal="up" data-ys-delay="0.15">{{ section.settings.text }}</p>
       {%- endif -%}
-      <div class="yespress-cta-app__badges">
+      <div class="yespress-cta-app__badges" data-ys-reveal="up" data-ys-delay="0.3">
         {%- if section.settings.playstore_label != blank -%}
           {% render 'yespress-store-badge', store: 'playstore', label: section.settings.playstore_label, link: section.settings.playstore_link, style: 'light' %}
         {%- endif -%}
@@ -48,6 +48,8 @@
     align-items: center;
     gap: clamp(24px, 4vw, 56px);
     background: radial-gradient(120% 160% at 85% 20%, #0c1f12 0%, #000 55%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
     border-radius: clamp(24px, 2.8vw, 40px);
     min-height: clamp(420px, 52vw, 510px);
     padding: clamp(32px, 4.5vw, 66px);
