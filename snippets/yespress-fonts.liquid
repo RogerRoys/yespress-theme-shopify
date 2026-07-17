@@ -1,19 +1,90 @@
 {% comment %}
-  Loads Plus Jakarta Sans (Google Fonts) and exposes the Yespress design tokens
-  as CSS custom properties. Rendered once by the yespress-header section, which
-  is present on every template via the header group.
+  Self-hosted fonts + Yespress design tokens.
+  - Plus Jakarta Sans: body, nav, footer (matches the Figma text styles)
+  - Display stack: SF Pro on Apple devices, self-hosted Inter elsewhere —
+    for the big Apple-style statement headings
+  Rendered once by the yespress-header section (present on every template).
 {% endcomment %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
 <style>
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('{{ 'plus-jakarta-sans-latin-400-normal.woff2' | asset_url }}') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('{{ 'plus-jakarta-sans-latin-500-normal.woff2' | asset_url }}') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('{{ 'plus-jakarta-sans-latin-700-normal.woff2' | asset_url }}') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('{{ 'plus-jakarta-sans-latin-800-normal.woff2' | asset_url }}') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('{{ 'inter-latin-400-normal.woff2' | asset_url }}') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('{{ 'inter-latin-500-normal.woff2' | asset_url }}') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('{{ 'inter-latin-600-normal.woff2' | asset_url }}') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('{{ 'inter-latin-700-normal.woff2' | asset_url }}') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
-    --yespress-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif;
+    --yespress-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --yespress-font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Helvetica, Arial, sans-serif;
     --yespress-bg: #000000;
+    --yespress-bg-soft: #131314;
     --yespress-text: #f5f5f7;
     --yespress-text-muted: rgba(245, 245, 247, 0.8);
     --yespress-pill: #424245;
     --yespress-green: #00ae42;
     --yespress-green-hover: #00c24a;
+  }
+
+  /* Yespress is a fully dark site — never let the base color scheme
+     show light backgrounds between or behind sections. */
+  html,
+  body {
+    background: #000 !important;
+    color: var(--yespress-text);
+  }
+
+  ::selection {
+    background: rgba(0, 174, 66, 0.6);
+    color: #fff;
   }
 </style>
