@@ -14,7 +14,7 @@
     "header": {
       "type": "yespress-header",
       "settings": {
-        "menu": "menu",
+        "menu": "main-menu",
         "show_search": true,
         "show_cart": true
       }
