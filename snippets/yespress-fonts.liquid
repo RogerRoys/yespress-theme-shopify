@@ -1,0 +1,19 @@
+{% comment %}
+  Loads Plus Jakarta Sans (Google Fonts) and exposes the Yespress design tokens
+  as CSS custom properties. Rendered once by the yespress-header section, which
+  is present on every template via the header group.
+{% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
+<style>
+  :root {
+    --yespress-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, Arial, sans-serif;
+    --yespress-bg: #000000;
+    --yespress-text: #f5f5f7;
+    --yespress-text-muted: rgba(245, 245, 247, 0.8);
+    --yespress-pill: #424245;
+    --yespress-green: #00ae42;
+    --yespress-green-hover: #00c24a;
+  }
+</style>

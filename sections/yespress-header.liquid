@@ -1,0 +1,357 @@
+{% render 'yespress-fonts' %}
+
+<header class="yespress-header">
+  <div class="yespress-header__inner">
+    <a href="{{ routes.root_url }}" class="yespress-header__logo" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 64 | image_tag: class: 'yespress-header__logo-img', alt: shop.name }}
+      {%- else -%}
+        {% render 'yespress-icons', name: 'logo' %}
+      {%- endif -%}
+    </a>
+
+    {%- if section.settings.menu != blank -%}
+      <nav class="yespress-header__nav" aria-label="Menu">
+        <ul class="yespress-header__menu">
+          {%- for link in section.settings.menu.links -%}
+            <li>
+              <a href="{{ link.url }}" class="yespress-header__link{% if link.current %} is-current{% endif %}">
+                {{- link.title -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="yespress-header__actions">
+      {%- if section.settings.show_search -%}
+        <a class="yespress-header__action" href="{{ routes.search_url }}" aria-label="Zoeken">
+          {% render 'yespress-icons', name: 'search' %}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.show_cart -%}
+        <a class="yespress-header__action" href="{{ routes.cart_url }}" aria-label="Winkelmandje ({{ cart.item_count }})">
+          {% render 'yespress-icons', name: 'bag' %}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.menu != blank -%}
+        <button
+          type="button"
+          class="yespress-header__action yespress-header__burger"
+          aria-label="Menu"
+          aria-expanded="false"
+          aria-controls="YespressDrawer-{{ section.id }}"
+          data-drawer-toggle
+        >
+          {% render 'yespress-icons', name: 'hamburger' %}
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+{%- if section.settings.menu != blank -%}
+  <div class="yespress-drawer" id="YespressDrawer-{{ section.id }}" data-yespress-drawer>
+    <div class="yespress-drawer__scrim" data-drawer-close></div>
+    <div class="yespress-drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <button type="button" class="yespress-drawer__close" aria-label="Sluiten" data-drawer-close>
+        {% render 'yespress-icons', name: 'close' %}
+      </button>
+      <ul class="yespress-drawer__menu">
+        {%- for link in section.settings.menu.links -%}
+          <li class="yespress-drawer__item">
+            <a href="{{ link.url }}" class="yespress-drawer__link">{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% style %}
+  .yespress-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+
+  .yespress-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(40px, 10.5vw, 160px);
+    height: 60px;
+    padding: 0 24px;
+  }
+
+  .yespress-header__logo {
+    display: inline-flex;
+    color: var(--yespress-text);
+  }
+
+  .yespress-header__logo svg,
+  .yespress-header__logo-img {
+    width: 32px;
+    height: 34px;
+    display: block;
+  }
+
+  .yespress-header__menu {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .yespress-header__link {
+    font-family: var(--yespress-font);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--yespress-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+
+  .yespress-header__link:hover,
+  .yespress-header__link.is-current {
+    color: var(--yespress-text);
+  }
+
+  .yespress-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .yespress-header__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 44px;
+    color: var(--yespress-text-muted);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .yespress-header__action:hover {
+    color: var(--yespress-text);
+  }
+
+  .yespress-header__action svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .yespress-header__burger {
+    display: none;
+  }
+
+  .yespress-header__burger svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Drawer */
+  .yespress-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    visibility: hidden;
+    transition: visibility 0.35s;
+  }
+
+  .yespress-drawer__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .yespress-drawer__panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(380px, 86vw);
+    background: #000;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    padding: 24px 0 40px;
+    overflow-y: auto;
+  }
+
+  .yespress-drawer.is-open {
+    visibility: visible;
+  }
+
+  .yespress-drawer.is-open .yespress-drawer__scrim {
+    opacity: 1;
+  }
+
+  .yespress-drawer.is-open .yespress-drawer__panel {
+    transform: translateX(0);
+  }
+
+  .yespress-drawer__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 8px 8px auto;
+    background: none;
+    border: none;
+    color: var(--yespress-text);
+    cursor: pointer;
+  }
+
+  .yespress-drawer__close svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .yespress-drawer__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .yespress-drawer__item {
+    border-bottom: 1px solid rgba(245, 245, 247, 0.12);
+  }
+
+  .yespress-drawer__item:first-child {
+    border-top: 1px solid rgba(245, 245, 247, 0.12);
+  }
+
+  .yespress-drawer__link {
+    display: block;
+    padding: 16px 40px;
+    font-family: var(--yespress-font);
+    font-size: 24px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--yespress-text);
+    text-decoration: none;
+  }
+
+  .yespress-drawer__link:hover {
+    color: var(--yespress-green);
+  }
+
+  html.yespress-drawer-open,
+  html.yespress-drawer-open body {
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 989px) {
+    .yespress-header__inner {
+      justify-content: space-between;
+      padding: 0 40px;
+      gap: 24px;
+    }
+
+    .yespress-header__nav {
+      display: none;
+    }
+
+    .yespress-header__burger {
+      display: inline-flex;
+    }
+
+    .yespress-header__actions {
+      gap: 16px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .yespress-header__inner {
+      padding: 0 24px;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    var root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+    var toggle = root.querySelector('[data-drawer-toggle]');
+    var drawer = root.querySelector('[data-yespress-drawer]');
+    if (!toggle || !drawer || drawer.dataset.bound) return;
+    drawer.dataset.bound = 'true';
+
+    function setOpen(open) {
+      drawer.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.documentElement.classList.toggle('yespress-drawer-open', open);
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(!drawer.classList.contains('is-open'));
+    });
+
+    drawer.querySelectorAll('[data-drawer-close]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        setOpen(false);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && drawer.classList.contains('is-open')) setOpen(false);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Yespress Header",
+  "tag": "header",
+  "class": "yespress-header-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Leave empty to use the built-in YesPress check mark."
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Show cart icon",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Yespress Header"
+    }
+  ]
+}
+{% endschema %}
