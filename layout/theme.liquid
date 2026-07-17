@@ -35,6 +35,10 @@
       {%- render 'theme-editor' -%}
     {% endif %}
 
+    <link rel="preload" href="{{ 'plus-jakarta-sans-latin-700-normal.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ 'plus-jakarta-sans-latin-400-normal.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    {% render 'yespress-fonts' %}
+
     {{ content_for_header }}
   </head>
 
