@@ -1,0 +1,235 @@
+<section class="yespress-explainer">
+  <div class="yespress-explainer__panel" data-ys-reveal="scale" id="YespressExplainer-{{ section.id }}">
+    <div class="yespress-explainer__media" aria-hidden="true">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 2400
+          | image_tag: class: 'yespress-explainer__image', widths: '1080, 1600, 2400', sizes: '100vw', alt: ''
+        }}
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="yespress-explainer__items" data-ys-stagger>
+        {%- for block in section.blocks -%}
+          <div class="yespress-explainer__item{% if forloop.first %} is-open{% endif %}" data-ys-acc-item {{ block.shopify_attributes }}>
+            <button
+              type="button"
+              class="yespress-explainer__toggle"
+              aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
+            >
+              <span class="yespress-explainer__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M12 7.5v9M7.5 12h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="yespress-explainer__title">{{ block.settings.title }}</span>
+            </button>
+            <div class="yespress-explainer__body-wrap">
+              <div class="yespress-explainer__body">
+                <p>{{ block.settings.text }}</p>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% style %}
+  .yespress-explainer {
+    background: #111112;
+    padding: clamp(16px, 2.6vw, 40px) clamp(16px, 4.2vw, 64px);
+  }
+
+  .yespress-explainer__panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: clamp(480px, 66vh, 650px);
+    background: #000;
+    border-radius: clamp(20px, 2vw, 28px);
+    overflow: hidden;
+    padding: clamp(24px, 4.4vw, 66px);
+  }
+
+  .yespress-explainer__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .yespress-explainer__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .yespress-explainer__items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: min(420px, 100%);
+  }
+
+  .yespress-explainer__item {
+    background: rgba(29, 29, 31, 0.92);
+    border-radius: 26px;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    max-width: max-content;
+    transition: border-radius 0.3s ease;
+  }
+
+  .yespress-explainer__item.is-open {
+    max-width: none;
+    border-radius: 18px;
+  }
+
+  .yespress-explainer__toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 24px 13px 13px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .yespress-explainer__icon {
+    display: inline-flex;
+    color: var(--yespress-text);
+    flex-shrink: 0;
+  }
+
+  .yespress-explainer__icon svg {
+    width: 26px;
+    height: 26px;
+    transition: transform 0.35s ease;
+  }
+
+  .yespress-explainer__item.is-open .yespress-explainer__icon svg {
+    transform: rotate(45deg);
+  }
+
+  .yespress-explainer__title {
+    font-family: var(--yespress-font);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--yespress-text);
+  }
+
+  .yespress-explainer__body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+
+  .yespress-explainer__item.is-open .yespress-explainer__body-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .yespress-explainer__body {
+    overflow: hidden;
+  }
+
+  .yespress-explainer__body p {
+    margin: 0;
+    padding: 0 24px 18px 51px;
+    font-family: var(--yespress-font);
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245, 245, 247, 0.75);
+  }
+
+  @media screen and (max-width: 749px) {
+    .yespress-explainer {
+      padding: 16px;
+    }
+
+    .yespress-explainer__panel {
+      align-items: flex-end;
+      min-height: 560px;
+      padding: 20px;
+    }
+
+    .yespress-explainer__items {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    var panel = document.getElementById('YespressExplainer-{{ section.id }}');
+    if (!panel || panel.dataset.accBound) return;
+    panel.dataset.accBound = 'true';
+    var items = Array.prototype.slice.call(panel.querySelectorAll('[data-ys-acc-item]'));
+    items.forEach(function (item) {
+      var btn = item.querySelector('.yespress-explainer__toggle');
+      btn.addEventListener('click', function () {
+        var isOpen = item.classList.contains('is-open');
+        items.forEach(function (other) {
+          other.classList.remove('is-open');
+          other.querySelector('.yespress-explainer__toggle').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Yespress Explainer",
+  "tag": "section",
+  "class": "yespress-explainer-wrapper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image",
+      "info": "Product close-up shown behind the accordion (Figma Section 2)."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "YesPress Eén"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "De grote drukknop is ontworpen voor eenvoudig en foutloos gebruik. De LED-ring licht direct op bij een correcte druk en geeft directe, duidelijke visuele bevestiging."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Yespress Explainer",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item", "settings": { "title": "Gebruik", "text": "Eén druk per dag is genoeg. Geen apps, geen instellingen — gewoon drukken en uw naasten weten dat alles goed gaat." } },
+        { "type": "item", "settings": { "title": "Adapter", "text": "Werkt direct uit de doos met de meegeleverde adapter. Altijd verbonden, zonder gedoe." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

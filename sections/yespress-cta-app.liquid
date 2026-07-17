@@ -1,0 +1,246 @@
+<section class="yespress-cta-app">
+  <div class="yespress-cta-app__panel" data-ys-reveal="scale">
+    <div class="yespress-cta-app__content" data-ys-stagger>
+      {%- if section.settings.heading != blank -%}
+        <h2 class="yespress-cta-app__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="yespress-cta-app__text">{{ section.settings.text }}</p>
+      {%- endif -%}
+      <div class="yespress-cta-app__badges">
+        {%- if section.settings.playstore_label != blank -%}
+          {% render 'yespress-store-badge', store: 'playstore', label: section.settings.playstore_label, link: section.settings.playstore_link, style: 'light' %}
+        {%- endif -%}
+        {%- if section.settings.appstore_label != blank -%}
+          {% render 'yespress-store-badge', store: 'appstore', label: section.settings.appstore_label, link: section.settings.appstore_link, style: 'green' %}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="yespress-cta-app__media">
+      {%- if section.settings.image != blank -%}
+        <div data-ys-parallax="36">
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag: class: 'yespress-cta-app__image', widths: '760, 1080, 1600', sizes: '(max-width: 749px) 100vw, 55vw', alt: section.settings.image.alt
+          }}
+        </div>
+      {%- else -%}
+        <div class="yespress-cta-app__placeholder" data-ys-parallax="24" aria-hidden="true">
+          <span class="yespress-cta-app__phone"></span>
+          <span class="yespress-cta-app__phone yespress-cta-app__phone--front"></span>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .yespress-cta-app {
+    background: #111112;
+    padding: clamp(16px, 2.6vw, 40px) clamp(16px, 4.2vw, 64px);
+  }
+
+  .yespress-cta-app__panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 4vw, 56px);
+    background: radial-gradient(120% 160% at 85% 20%, #0c1f12 0%, #000 55%);
+    border-radius: clamp(24px, 2.8vw, 40px);
+    min-height: clamp(420px, 52vw, 510px);
+    padding: clamp(32px, 4.5vw, 66px);
+    overflow: hidden;
+  }
+
+  .yespress-cta-app__content {
+    position: relative;
+    z-index: 2;
+    max-width: 460px;
+    flex-shrink: 0;
+  }
+
+  .yespress-cta-app__heading {
+    font-family: var(--yespress-font);
+    font-size: clamp(30px, 3.8vw, 54px);
+    line-height: 1.15;
+    font-weight: 700;
+    color: var(--yespress-text);
+    margin: 0 0 18px;
+  }
+
+  .yespress-cta-app__text {
+    font-family: var(--yespress-font);
+    font-size: clamp(13px, 1vw, 15px);
+    line-height: 1.55;
+    color: rgba(245, 245, 247, 0.7);
+    margin: 0 0 26px;
+  }
+
+  .yespress-cta-app__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .yespress-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border-radius: 980px;
+    padding: 12px 20px;
+    font-family: var(--yespress-font);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+
+  .yespress-badge:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+  }
+
+  .yespress-badge--light {
+    background: #fff;
+    color: #0b0b0c;
+  }
+
+  .yespress-badge--green {
+    background: var(--yespress-green);
+    color: #fff;
+  }
+
+  .yespress-badge__icon {
+    display: inline-flex;
+  }
+
+  .yespress-badge__icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .yespress-cta-app__media {
+    position: relative;
+    flex: 1 1 auto;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+  }
+
+  .yespress-cta-app__image {
+    max-width: 100%;
+    max-height: 130%;
+    object-fit: contain;
+  }
+
+  .yespress-cta-app__placeholder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+  }
+
+  .yespress-cta-app__phone {
+    position: absolute;
+    top: 10%;
+    left: 32%;
+    width: 42%;
+    max-width: 240px;
+    aspect-ratio: 9 / 18;
+    border-radius: 36px;
+    border: 2px solid rgba(245, 245, 247, 0.35);
+    background: linear-gradient(160deg, #10241a, #050505 70%);
+    transform: rotate(-14deg);
+  }
+
+  .yespress-cta-app__phone--front {
+    left: 48%;
+    top: 22%;
+    transform: rotate(-8deg);
+    background: linear-gradient(160deg, #143024, #050505 70%);
+  }
+
+  @media screen and (max-width: 989px) {
+    .yespress-cta-app__panel {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .yespress-cta-app__media {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .yespress-cta-app {
+      padding: 16px;
+    }
+
+    .yespress-cta-app__panel {
+      padding: 28px 20px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Yespress CTA App",
+  "tag": "section",
+  "class": "yespress-cta-app-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join 250k users download our app!"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "This expanding community is more than just a number; it reflects the trust and satisfaction of over 250,000 users who have decided to download our app and join us."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "App mockup image",
+      "info": "Phone mockups render from Figma (CTA - APP section)."
+    },
+    {
+      "type": "header",
+      "content": "Store badges"
+    },
+    {
+      "type": "text",
+      "id": "playstore_label",
+      "label": "Play Store label",
+      "default": "Get on Playstore"
+    },
+    {
+      "type": "url",
+      "id": "playstore_link",
+      "label": "Play Store link"
+    },
+    {
+      "type": "text",
+      "id": "appstore_label",
+      "label": "App Store label",
+      "default": "Get on Appstore"
+    },
+    {
+      "type": "url",
+      "id": "appstore_link",
+      "label": "App Store link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Yespress CTA App"
+    }
+  ]
+}
+{% endschema %}

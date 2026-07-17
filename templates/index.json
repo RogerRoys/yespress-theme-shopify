@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
@@ -22,9 +13,114 @@
         "buy_label": "Koop",
         "full_height": true
       }
+    },
+    "explainer": {
+      "type": "yespress-explainer",
+      "blocks": {
+        "item-device": {
+          "type": "item",
+          "settings": {
+            "title": "YesPress Eén",
+            "text": "De grote drukknop is ontworpen voor eenvoudig en foutloos gebruik. De LED-ring licht direct op bij een correcte druk en geeft directe, duidelijke visuele bevestiging."
+          }
+        },
+        "item-gebruik": {
+          "type": "item",
+          "settings": {
+            "title": "Gebruik",
+            "text": "Eén druk per dag is genoeg. Geen apps, geen instellingen — gewoon drukken en uw naasten weten dat alles goed gaat."
+          }
+        },
+        "item-adapter": {
+          "type": "item",
+          "settings": {
+            "title": "Adapter",
+            "text": "Werkt direct uit de doos met de meegeleverde adapter. Altijd verbonden, zonder gedoe."
+          }
+        }
+      },
+      "block_order": ["item-device", "item-gebruik", "item-adapter"]
+    },
+    "highlights": {
+      "type": "yespress-highlights",
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in nisl vel arcu vehicula lacinia id id lectus. Sed"
+          }
+        },
+        "slide-2": {
+          "type": "slide",
+          "settings": {
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in nisl vel arcu vehicula lacinia id id lectus. Sed"
+          }
+        },
+        "slide-3": {
+          "type": "slide",
+          "settings": {
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in nisl vel arcu vehicula lacinia id id lectus. Sed"
+          }
+        }
+      },
+      "block_order": ["slide-1", "slide-2", "slide-3"],
+      "settings": {
+        "heading": "De highlights op een rij."
+      }
+    },
+    "cta-return": {
+      "type": "yespress-cta-return",
+      "blocks": {
+        "tile-shipping": {
+          "type": "tile",
+          "settings": {
+            "label": "Free Shipping",
+            "pos_x": 22,
+            "pos_y": 105,
+            "rotate": -10
+          }
+        },
+        "tile-30day": {
+          "type": "tile",
+          "settings": {
+            "label": "Free 30 Day",
+            "pos_x": 50,
+            "pos_y": 45,
+            "rotate": 6
+          }
+        },
+        "tile-moneyback": {
+          "type": "tile",
+          "settings": {
+            "label": "Money Back Guarantee",
+            "pos_x": 78,
+            "pos_y": 110,
+            "rotate": 9
+          }
+        }
+      },
+      "block_order": ["tile-shipping", "tile-30day", "tile-moneyback"],
+      "settings": {
+        "heading": "Shop with Confidence, Risk-Free for 30 Days",
+        "text": "Shop confidently knowing that if your purchase doesn't feel quite right, you can return it within 30 days at no additional cost, making your shopping experience safer, easier, and completely worry-free.",
+        "button_label": "Try for Free Now"
+      }
+    },
+    "cta-app": {
+      "type": "yespress-cta-app",
+      "settings": {
+        "heading": "Join 250k users download our app!",
+        "text": "This expanding community is more than just a number; it reflects the trust and satisfaction of over 250,000 users who have decided to download our app and join us.",
+        "playstore_label": "Get on Playstore",
+        "appstore_label": "Get on Appstore"
+      }
     }
   },
   "order": [
-    "hero"
+    "hero",
+    "explainer",
+    "highlights",
+    "cta-return",
+    "cta-app"
   ]
 }
