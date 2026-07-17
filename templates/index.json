@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -11,6 +20,7 @@
         "heading": "Altijd gerust.",
         "price_text": "Voor € 149",
         "buy_label": "Koop",
+        "buy_link": "",
         "full_height": true
       }
     },
@@ -21,25 +31,36 @@
           "type": "item",
           "settings": {
             "title": "YesPress Eén",
-            "text": "De grote drukknop is ontworpen voor eenvoudig en foutloos gebruik. De LED-ring licht direct op bij een correcte druk en geeft directe, duidelijke visuele bevestiging."
+            "text": "De grote drukknop is ontworpen voor eenvoudig en foutloos gebruik. De LED-ring licht direct op bij een correcte druk en geeft directe, duidelijke visuele bevestiging.",
+            "video": "shopify://files/videos/Dekstop - Book (online-video-cutter.com).mp4",
+            "video_asset": ""
           }
         },
         "item-gebruik": {
           "type": "item",
           "settings": {
             "title": "Gebruik",
-            "text": "Eén druk per dag is genoeg. Geen apps, geen instellingen — gewoon drukken en uw naasten weten dat alles goed gaat."
+            "text": "Eén druk per dag is genoeg. Geen apps, geen instellingen — gewoon drukken en uw naasten weten dat alles goed gaat.",
+            "video": "shopify://files/videos/Dekstop - yespress.mp4",
+            "video_asset": ""
           }
         },
         "item-adapter": {
           "type": "item",
           "settings": {
             "title": "Adapter",
-            "text": "Werkt direct uit de doos met de meegeleverde adapter. Altijd verbonden, zonder gedoe."
+            "text": "Werkt direct uit de doos met de meegeleverde adapter. Altijd verbonden, zonder gedoe.",
+            "video": "shopify://files/videos/Dekstop - Charger (online-video-cutter.com).mp4",
+            "video_asset": ""
           }
         }
       },
-      "block_order": ["item-device", "item-gebruik", "item-adapter"]
+      "block_order": [
+        "item-device",
+        "item-gebruik",
+        "item-adapter"
+      ],
+      "settings": {}
     },
     "highlights": {
       "type": "yespress-highlights",
@@ -63,7 +84,11 @@
           }
         }
       },
-      "block_order": ["slide-1", "slide-2", "slide-3"],
+      "block_order": [
+        "slide-1",
+        "slide-2",
+        "slide-3"
+      ],
       "settings": {
         "heading": "De highlights op een rij."
       }
@@ -99,11 +124,16 @@
           }
         }
       },
-      "block_order": ["tile-shipping", "tile-30day", "tile-moneyback"],
+      "block_order": [
+        "tile-shipping",
+        "tile-30day",
+        "tile-moneyback"
+      ],
       "settings": {
         "heading": "Shop with Confidence, Risk-Free for 30 Days",
         "text": "Shop confidently knowing that if your purchase doesn't feel quite right, you can return it within 30 days at no additional cost, making your shopping experience safer, easier, and completely worry-free.",
-        "button_label": "Try for Free Now"
+        "button_label": "Try for Free Now",
+        "button_link": ""
       }
     },
     "cta-app": {
@@ -112,7 +142,9 @@
         "heading": "Join 250k users download our app!",
         "text": "This expanding community is more than just a number; it reflects the trust and satisfaction of over 250,000 users who have decided to download our app and join us.",
         "playstore_label": "Get on Playstore",
-        "appstore_label": "Get on Appstore"
+        "playstore_link": "",
+        "appstore_label": "Get on Appstore",
+        "appstore_link": ""
       }
     }
   },
